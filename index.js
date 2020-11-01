@@ -14,11 +14,12 @@ async function run() {
 
     const client = github.getOctokit(token);
 
-    const files = client.pulls.listFiles({
+    const filesResp = await client.pulls.listFiles({
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
       pull_number: pr.number,
     });
+    const files = filesResp.data;
 
     let allErrors = [];
     files.forEach(function (file) {
