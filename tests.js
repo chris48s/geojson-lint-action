@@ -17,6 +17,7 @@ describe("lintFiles", function () {
       { filename: "testdata/good2.geojson" },
       { filename: "testdata/bad1.geojson" },
       { filename: "testdata/bad2.geojson" },
+      { filename: "testdata/somethingelse.txt" },
     ]);
     assert.equal(2, errors.length);
     assert.equal(
@@ -27,5 +28,15 @@ describe("lintFiles", function () {
       "each element in a position must be a number",
       errors[1].errors[0].message
     );
+  });
+
+  it("should not throw any errors with no files", function () {
+    const errors = lintFiles([]);
+    assert.equal(0, errors.length);
+  });
+
+  it("should ignore non-geojson files", function () {
+    const errors = lintFiles([{ filename: "testdata/somethingelse.txt" }]);
+    assert.equal(0, errors.length);
   });
 });
