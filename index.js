@@ -1,7 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const geojsonhint = require("@mapbox/geojsonhint");
-const fs = require("fs");
+const { errorsToConsoleString, lintFiles } = require("./lib.js");
 
 async function run() {
   try {
@@ -21,27 +20,10 @@ async function run() {
     });
     const files = await client.paginate(filesPromise);
 
-    let allErrors = [];
-    files.forEach(function (file) {
-      if (file.filename.match(/\.geojson$/)) {
-        console.log(`Linting ${file.filename} ...`);
-        const data = fs.readFileSync(file.filename, "utf8");
-        const errors = geojsonhint.hint(data, {
-          noDuplicateMembers: false,
-          precisionWarning: false,
-        });
-        if (errors.length > 0) {
-          console.log(`❌ Failed`);
-          allErrors.push({ filename: file.filename, errors: errors });
-        } else {
-          console.log(`✅ Passed`);
-        }
-      }
-    });
-    if (allErrors.length > 0) {
-      core.setFailed(JSON.stringify(allErrors, null, 2));
+    const errors = lintFiles(files);
+    if (errors.length > 0) {
+      core.setFailed(errorsToConsoleString(errors));
     }
-
   } catch (error) {
     core.setFailed(error.message);
   }
