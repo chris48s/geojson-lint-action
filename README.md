@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Lint
-        uses: chris48s/geojson-lint-action@master
+        uses: chris48s/geojson-lint-action@main
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
 ```
