@@ -1,0 +1,25 @@
+{
+  "name": "geojson-lint-action",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chris48s",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@mapbox/geojsonhint": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris48s/geojson-lint-action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chris48s/geojson-lint-action/issues"
+  },
+  "homepage": "https://github.com/chris48s/geojson-lint-action#readme"
+}
