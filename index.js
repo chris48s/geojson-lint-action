@@ -31,7 +31,10 @@ async function run() {
           precisionWarning: false,
         });
         if (errors.length > 0) {
+          console.log(`❌ Failed`);
           allErrors.push({ filename: file.filename, errors: errors });
+        } else {
+          console.log(`✅ Passed`);
         }
       }
     });
