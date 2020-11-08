@@ -1,6 +1,8 @@
 # geojson-lint-action
 
-Run @mapbox/geojsonhint on geojson files in pull requests
+![Run tests](https://github.com/chris48s/geojson-lint-action/workflows/Run%20tests/badge.svg)
+
+Run [@mapbox/geojsonhint](https://www.npmjs.com/package/@mapbox/geojsonhint) on geojson files in pull requests
 
 ```yaml
 name: Geojson Lint
