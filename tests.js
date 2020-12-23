@@ -39,4 +39,22 @@ describe("lintFiles", function () {
     const errors = lintFiles([{ filename: "testdata/somethingelse.txt" }]);
     assert.equal(0, errors.length);
   });
+
+  it("should pass through noDuplicateMembers flag", function () {
+    let errors = lintFiles([{ filename: "testdata/duplicates.geojson" }]);
+    assert.equal(1, errors.length);
+    errors = lintFiles([{ filename: "testdata/duplicates.geojson" }], {
+      noDuplicateMembers: false,
+    });
+    assert.equal(0, errors.length);
+  });
+
+  it("should pass through precisionWarning flag", function () {
+    let errors = lintFiles([{ filename: "testdata/precision.geojson" }]);
+    assert.equal(0, errors.length);
+    errors = lintFiles([{ filename: "testdata/precision.geojson" }], {
+      precisionWarning: true,
+    });
+    assert.equal(1, errors.length);
+  });
 });

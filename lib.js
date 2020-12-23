@@ -1,16 +1,13 @@
 const geojsonhint = require("@mapbox/geojsonhint");
 const fs = require("fs");
 
-function lintFiles(files) {
+function lintFiles(files, opts) {
   let allErrors = [];
   files.forEach(function (file) {
     if (file.filename.match(/\.geojson$/)) {
       console.log(`Linting ${file.filename} ...`);
       const data = fs.readFileSync(file.filename, "utf8");
-      const errors = geojsonhint.hint(data, {
-        noDuplicateMembers: false,
-        precisionWarning: false,
-      });
+      const errors = geojsonhint.hint(data, opts);
       if (errors.length > 0) {
         console.log(`❌ Failed`);
         allErrors.push({ filename: file.filename, errors: errors });
