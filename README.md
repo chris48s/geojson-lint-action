@@ -1,6 +1,6 @@
 # geojson-lint-action
 
-![Run tests](https://github.com/chris48s/geojson-lint-action/workflows/Run%20tests/badge.svg?branch=main)
+[![Run tests](https://github.com/chris48s/geojson-lint-action/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/chris48s/geojson-lint-action/actions/workflows/test.yml)
 
 Run [@mapbox/geojsonhint](https://www.npmjs.com/package/@mapbox/geojsonhint) on geojson files in pull requests
 
